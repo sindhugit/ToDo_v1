@@ -25,6 +25,7 @@ public class EditList {
 	  final private String user = "root"; 
 	  final private String passwd = "root";
 	  
+	 /* Adding elements to existed list name */ 
 	public void EditByAdd(String userlogname,String listName,String listItems)throws Exception{
 	
 		try {
@@ -63,7 +64,7 @@ public class EditList {
 	
 	}
 	
-	
+	/* close all database connections*/
 	 private void close() {
 		    try {
 		    	

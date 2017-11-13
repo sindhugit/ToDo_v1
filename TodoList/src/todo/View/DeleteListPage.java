@@ -48,6 +48,7 @@ public class DeleteListPage {
 				try {
 					DeleteListPage window = new DeleteListPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -151,7 +152,9 @@ public class DeleteListPage {
 		});
 	}
 	
-	public void DeletePageLoadMethod()throws Exception{
+	
+	/* show all list names and list items in JTable */
+	private void DeletePageLoadMethod()throws Exception{
 		
 		 try {
 	      // This will load the MySQL driver, each DB has its own driver
@@ -183,7 +186,8 @@ public class DeleteListPage {
 	}
 	
 	
-	public void DeletePageDeleteMethod() {
+	/*Selecting one row from JTable passing that to delete method*/
+	private void DeletePageDeleteMethod() {
 		
 		DefaultTableModel dtm=(DefaultTableModel) loadTable.getModel();
 		//get index of selected row
@@ -198,7 +202,7 @@ public class DeleteListPage {
 		dtm.removeRow(selectedRow);
 		
 	}
-	
+	/* closing all connections*/
 		 private void close() {
 			    try {
 			    	

@@ -44,6 +44,7 @@ public class EditListPage {
 				try {
 					EditListPage window = new EditListPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -137,7 +138,8 @@ public class EditListPage {
 		
 	}
 	
-	public void EditListPageMethod() {
+	/* checking filed values and call editing list method*/
+	private void EditListPageMethod() {
 		
 	System.out.println("EditListPage method called");
 	

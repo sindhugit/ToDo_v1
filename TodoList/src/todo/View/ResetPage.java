@@ -34,7 +34,12 @@ public class ResetPage extends JFrame {
 			public void run() {
 				try {
 					ResetPage frame = new ResetPage();
+					frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+					//frame.pack();
+					//frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,7 +52,7 @@ public class ResetPage extends JFrame {
 	 */
 	public ResetPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 574, 363);
+		setBounds(100, 100, 744, 460);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(143, 188, 143));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,7 +70,7 @@ public class ResetPage extends JFrame {
 		lblWelcomeTo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeTo.setForeground(new Color(165, 42, 42));
 		lblWelcomeTo.setFont(new Font("Sitka Subheading", Font.BOLD, 20));
-		lblWelcomeTo.setBounds(141, 11, 269, 31);
+		lblWelcomeTo.setBounds(113, 4, 269, 31);
 		contentPane.add(lblWelcomeTo);
 		
 		userNameField = new JTextField();
@@ -112,7 +117,7 @@ public class ResetPage extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
 		lblNewLabel.setForeground(new Color(25, 25, 112));
-		lblNewLabel.setBounds(194, 40, 177, 26);
+		lblNewLabel.setBounds(156, 40, 177, 26);
 		contentPane.add(lblNewLabel);
 		
 		JButton exitbtn = new JButton("Exit");
@@ -166,8 +171,8 @@ public class ResetPage extends JFrame {
 		
 	}
 	
-	
-	public void checkUser() {
+	/* checking valid user or not , and get security question to continue with reset*/
+	private void checkUser() {
 		
 		String getReturnString=null;
 		
@@ -193,9 +198,10 @@ public class ResetPage extends JFrame {
         if(getReturnString != null) {
         questionfield.setText(getReturnString);
         }
-        else {
+        //show msg only when user name field is not empty and return string is null
+        else if((getReturnString==null)&&(userNameField.getText().length()!=0)) {
         	JOptionPane.showMessageDialog(null, "Username no existed in To Do system, Please continue with Registration");
-        	RegistrationPage.main(null);
+        	//RegistrationPage.main(null);
         }
 				
 	}
@@ -203,8 +209,9 @@ public class ResetPage extends JFrame {
 	
 	
 	
-	/**calling Reset method by passing parameters user name and entered password**/
-	public void ResetPageMethod() {
+	/*calling Reset method by passing parameters user name and entered password*/
+	
+	private void ResetPageMethod() {
 		
            if(userNameField.getText().toString().isEmpty()) {
 			

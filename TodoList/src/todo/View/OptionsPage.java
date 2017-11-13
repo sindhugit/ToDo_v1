@@ -23,6 +23,7 @@ public class OptionsPage {
 				try {
 					OptionsPage window = new OptionsPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,7 +53,7 @@ public class OptionsPage {
 		lblWelcomeTo.setBounds(189, 22, 278, 27);
 		frame.getContentPane().add(lblWelcomeTo);
 		
-		JButton btncreatelist = new JButton("+Createlist");
+		JButton btncreatelist = new JButton("+Create List");
 		btncreatelist.setForeground(new Color(0, 0, 128));
 		btncreatelist.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btncreatelist.setBackground(new Color(0, 128, 128));
@@ -60,7 +61,7 @@ public class OptionsPage {
 		frame.getContentPane().add(btncreatelist);
 		btncreatelist.addActionListener(e->CreateListPage.main(null));
 		
-		JButton btnshowlist = new JButton("+Showlist");
+		JButton btnshowlist = new JButton("+Show List");
 		btnshowlist.setForeground(new Color(0, 0, 128));
 		btnshowlist.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btnshowlist.setBackground(new Color(0, 128, 128));
@@ -68,7 +69,7 @@ public class OptionsPage {
 		frame.getContentPane().add(btnshowlist);
 		btnshowlist.addActionListener(e->ShowListNamesPage.main(null));
 		
-		JButton btneditlist = new JButton("+Editlist");
+		JButton btneditlist = new JButton("+Edit List");
 		btneditlist.setForeground(new Color(0, 0, 128));
 		btneditlist.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btneditlist.setBackground(new Color(0, 128, 128));
@@ -88,10 +89,11 @@ public class OptionsPage {
 		btnLogout.setForeground(new Color(0, 0, 128));
 		btnLogout.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btnLogout.setBackground(new Color(0, 128, 128));
-		btnLogout.setBounds(289, 330, 93, 25);
+		btnLogout.setBounds(538, 343, 93, 25);
 		frame.getContentPane().add(btnLogout);
+		btnLogout.addActionListener(e->System.exit(0));
 		
-		JButton btndeletelist = new JButton("+Deletelist");
+		JButton btndeletelist = new JButton("+Delete List");
 		btndeletelist.setForeground(new Color(0, 0, 128));
 		btndeletelist.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btndeletelist.setBackground(new Color(0, 128, 128));
@@ -99,12 +101,14 @@ public class OptionsPage {
 		frame.getContentPane().add(btndeletelist);
 		btndeletelist.addActionListener(e->DeleteListPage.main(null));
 		
-		JButton btntasksAssignedTo = new JButton("+Tasks Assigned to me");
-		btntasksAssignedTo.setForeground(new Color(0, 0, 128));
-		btntasksAssignedTo.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
-		btntasksAssignedTo.setBackground(new Color(0, 128, 128));
-		btntasksAssignedTo.setBounds(233, 292, 208, 27);
-		frame.getContentPane().add(btntasksAssignedTo);
+		JButton btntasksAssignedToMe = new JButton("+Tasks Assigned to me");
+		btntasksAssignedToMe.setForeground(new Color(0, 0, 128));
+		btntasksAssignedToMe.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
+		btntasksAssignedToMe.setBackground(new Color(0, 128, 128));
+		btntasksAssignedToMe.setBounds(233, 292, 208, 27);
+		frame.getContentPane().add(btntasksAssignedToMe);
+		btntasksAssignedToMe.addActionListener(e->AssignedToMePage.main(null));
+		
 		
 		JLabel lblNewLabel = new JLabel("<<  Main Menu  >>");
 		lblNewLabel.setBackground(new Color(0, 128, 128));
@@ -113,7 +117,15 @@ public class OptionsPage {
 		lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setBounds(246, 66, 183, 25);
 		frame.getContentPane().add(lblNewLabel);
-		btnLogout.addActionListener(e->System.exit(0));
+		
+		JButton btnAssignTask = new JButton("Assign Task");
+		btnAssignTask.setForeground(new Color(0, 0, 128));
+		btnAssignTask.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
+		btnAssignTask.setBackground(new Color(0, 128, 128));
+		btnAssignTask.setBounds(246, 330, 183, 23);
+		frame.getContentPane().add(btnAssignTask);
+		btnAssignTask.addActionListener(e->AssignTaskPage.main(null));
+		
 		frame.setBounds(100, 100, 674, 418);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

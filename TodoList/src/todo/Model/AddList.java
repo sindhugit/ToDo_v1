@@ -29,6 +29,7 @@ public class AddList {
 	  final private String user = "root"; 
 	  final private String passwd = "root";
 	  
+	  /** creating new list**/
 	  public void addListMethod(String listName,String listItems) throws Exception{
 		  flag=0;
 		  try {
@@ -61,6 +62,8 @@ public class AddList {
 		      System.out.println("Username "+userlogname);
 		      System.out.println("ListName "+listName);
 		      System.out.println("list itemes "+listItems);
+		      
+		      
 		      while(resultSet.next())
 		      {
 		    	   listNameString = resultSet.getString("listname");
@@ -70,7 +73,7 @@ public class AddList {
 						         break;
 						     } 
 		      }
-		      
+		      /*Adding new list name*/
 		            if(flag==0) {
 		            	preparedStatement = connect
 		                  .prepareStatement("insert into  todo_db.list_table values (?, ?, ?)");
@@ -80,7 +83,7 @@ public class AddList {
 			          preparedStatement.executeUpdate();
 			          JOptionPane.showMessageDialog(null, "Data inserted sucessfully....");
 		            }
-		            
+		            /*Adding items to existed list name*/   
 		         if(flag==1) {
 		        	 System.out.println("existed listName:"+ listNameString);
 		    	  int choice=JOptionPane.showConfirmDialog(null,"ListName Already existed, Do you want to continue with edit list option??",null, JOptionPane.YES_NO_OPTION);
@@ -107,7 +110,7 @@ public class AddList {
 	
 	 }
 	  
-	  
+	  /* closing all connections*/  
 	 private void close() {
 		    try {
 		    	

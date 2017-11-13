@@ -57,6 +57,7 @@ public class ShowListNamesPage {
 				try {
 					ShowListNamesPage window = new ShowListNamesPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -179,7 +180,8 @@ public class ShowListNamesPage {
 		
 	}
 	
-	public void ShowListNamesPageMethod()throws Exception{
+	/* getting list names when listnames button pressed*/
+	private void ShowListNamesPageMethod()throws Exception{
 		
 		 try {
 	      // This will load the MySQL driver, each DB has its own driver
@@ -227,8 +229,8 @@ public class ShowListNamesPage {
        close();
       }
 }
-	
-	public void ShowListItemsPageMethod()throws Exception{
+	/* getting list items when one list name selcted*/
+	private void ShowListItemsPageMethod()throws Exception{
 		
 		 try {
 	      // This will load the MySQL driver, each DB has its own driver
@@ -276,6 +278,7 @@ public class ShowListNamesPage {
 	}
 	
 	
+	/* closing all connections*/
 	private void close() {
 	    try {
 	    	

@@ -37,6 +37,7 @@ public class RegistrationPage {
 			try {
 				RegistrationPage window = new RegistrationPage();
 				window.frame.setVisible(true);
+				window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 			    } 
 			 catch (Exception e) {
 				e.printStackTrace();
@@ -211,7 +212,7 @@ public class RegistrationPage {
 		
 		
 	}
-       
+       /* checking for empty fields, if fields or not empty call registration method to register*/
 	   private void regButtonMethod(){
 		
 		System.out.println("Registration Button Method Called.");

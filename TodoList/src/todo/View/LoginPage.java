@@ -36,6 +36,8 @@ public class LoginPage {
 				try {
 					LoginPage window = new LoginPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,7 +59,7 @@ public class LoginPage {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(new Color(128, 0, 0));
 		frame.getContentPane().setBackground(new Color(143, 188, 143));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 732, 482);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -69,19 +71,19 @@ public class LoginPage {
 		lblUsername.setForeground(new Color(0, 0, 128));
 		lblUsername.setFont(new Font("Sitka Subheading", Font.PLAIN, 14));
 		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUsername.setBounds(107, 61, 79, 14);
+		lblUsername.setBounds(268, 98, 79, 14);
 		frame.getContentPane().add(lblUsername);
 		
-		JLabel lblWelcomeToTodo = new JLabel("Welcome to ToDo List");
+		JLabel lblWelcomeToTodo = new JLabel("**  Welcome to ToDo List  **");
 		lblWelcomeToTodo.setForeground(new Color(165, 42, 42));
 		lblWelcomeToTodo.setFont(new Font("Sitka Subheading", Font.BOLD, 20));
 		lblWelcomeToTodo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcomeToTodo.setBounds(94, 11, 254, 25);
+		lblWelcomeToTodo.setBounds(231, 25, 276, 25);
 		frame.getContentPane().add(lblWelcomeToTodo);
 		
 		usernameField= new JTextField();
 		usernameField.setForeground(new Color(0, 128, 128));
-		usernameField.setBounds(208, 58, 127, 26);
+		usernameField.setBounds(368, 92, 127, 26);
 		frame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		
@@ -89,19 +91,19 @@ public class LoginPage {
 		lblNewLabel.setForeground(new Color(0, 0, 128));
 		lblNewLabel.setFont(new Font("Sitka Subheading", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(107, 102, 79, 14);
+		lblNewLabel.setBounds(268, 145, 79, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
 		passwordField.setForeground(new Color(0, 128, 128));
-		passwordField.setBounds(208, 90, 127, 26);
+		passwordField.setBounds(368, 139, 127, 26);
 		frame.getContentPane().add(passwordField);
 		
 		JButton loginButton = new JButton("Login");
 		loginButton.setBackground(new Color(0, 128, 128));
 		loginButton.setForeground(new Color(0, 0, 128));
 		loginButton.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
-		loginButton.setBounds(193, 147, 89, 23);
+		loginButton.setBounds(329, 193, 89, 23);
 		frame.getContentPane().add(loginButton);
 		loginButton.addActionListener(e->loginButtonMethod());
 
@@ -110,7 +112,7 @@ public class LoginPage {
 		regButton.setBackground(new Color(0, 128, 128));
 		regButton.setForeground(new Color(0, 0, 128));
 		regButton.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
-		regButton.setBounds(272, 192, 89, 23);
+		regButton.setBounds(161, 243, 89, 23);
 		frame.getContentPane().add(regButton);
 		regButton.addActionListener(e->RegistrationPage.main(null));
 		
@@ -118,10 +120,21 @@ public class LoginPage {
 		btnReset.setBackground(new Color(0, 128, 128));
 		btnReset.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
 		btnReset.setForeground(new Color(0, 0, 128));
-		btnReset.setBounds(130, 192, 89, 23);
+		btnReset.setBounds(329, 243, 89, 23);
 		frame.getContentPane().add(btnReset);
 		btnReset.addActionListener(e->ResetPage.main(null));
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.setBackground(new Color(0, 128, 128));
+		btnExit.setForeground(new Color(25, 25, 112));
+		btnExit.setFont(new Font("Sitka Subheading", Font.BOLD, 14));
+		btnExit.setBounds(530, 243, 89, 23);
+		frame.getContentPane().add(btnExit);
+		btnExit.addActionListener(e->System.exit(0));
+		
 	}
+	
+	/* checking fields empty or not, if not empty call login method*/
 
 	private void loginButtonMethod(){
 		

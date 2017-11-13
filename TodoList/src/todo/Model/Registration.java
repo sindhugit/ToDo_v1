@@ -21,7 +21,8 @@ public class Registration {
 	private ResultSet resultSet = null;
 	final private String user = "root"; 
 	 final private String passwd = "root";
-	
+	 
+	/** Registering new user in to To Do system **/
 	public void createRegistration(String userName,String password,String profileName,String question,String answer)throws Exception {
 		boolean flag=true;
 		

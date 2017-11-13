@@ -39,6 +39,7 @@ public class CreateListPage {
 				try {
 					CreateListPage window = new CreateListPage();
 					window.frame.setVisible(true);
+					window.frame.setExtendedState(window.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -132,7 +133,9 @@ public class CreateListPage {
 		
 	}
 	
-	public void CreateListPageMethod()
+	/* Checking fields are empty or not,if not empty call create list method to create new list */
+	
+	private void CreateListPageMethod()
 	{
 		System.out.println("CreateListPage method called");
 		if(listNameField.getText().toString().isEmpty()) {

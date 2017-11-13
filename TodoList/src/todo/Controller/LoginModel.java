@@ -30,7 +30,7 @@ public class LoginModel {
 	 
 		 
 		   /**login method**/ 
-	  
+	/** Checking Valid user or not, if user valid logged in to the System **/  
    public void loginMethod(String userName, String password) throws Exception {
 	   try {
 		      // This will load the MySQL driver, each DB has its own driver

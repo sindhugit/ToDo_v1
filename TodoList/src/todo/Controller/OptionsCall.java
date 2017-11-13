@@ -1,10 +1,13 @@
 package todo.Controller;
 
 import todo.Model.AddList;
+import todo.Model.AssignTask;
 import todo.Model.DeleteList;
 import todo.Model.EditList;
 import todo.Model.Registration;
 
+
+/** Calling Model methods**/
 public class OptionsCall {
 	
 	public void callAddList(String listName,String listItems) {
@@ -20,6 +23,21 @@ public class OptionsCall {
 					
 		}
 	}
+	
+	public void callAssignTask(String toUser,String listName,String listItems) {
+		AssignTask objAssignTask = new AssignTask();
+		   
+		 try {
+						
+			 objAssignTask.assignTaskMethod(toUser,listName,listItems);
+					
+		} 
+		catch (Exception e) {
+		e.printStackTrace();
+					
+		}
+	}
+	
 	
 	public void callRegistration(String userName,String password,String profileName,String question,String answer ) {
 		

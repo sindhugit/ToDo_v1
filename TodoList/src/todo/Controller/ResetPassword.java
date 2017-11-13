@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 	  final private String user = "root"; 
 	  final private String passwd = "root";
 	
+	  /** Reseting password if existed user and get security question**/
  public String checkValidUser(String userName) throws Exception {
 		  
 		  try {
@@ -68,10 +69,10 @@ import javax.swing.JFrame;
 		 	      }
 	        	 System.out.println(returnString);
 	        }
-	        else {
+	      /*  else {
 	    	  	  JOptionPane.showMessageDialog(null, "UserName not available. Please use Registration page to register.");
 	        }
-	        
+	        */
 		  }catch(Exception e) {
 	            throw e;
 	       }//catch close 
@@ -81,7 +82,7 @@ import javax.swing.JFrame;
 	    }
 		  return returnString;
  }
-	
+	/** After getting the security question validate security answer and change password**/
 	  public void changePassword(String userName,String newPassword,String answerField) throws Exception {
 		  
 		  try {
@@ -138,7 +139,8 @@ import javax.swing.JFrame;
 	      }
 	    
      }
-	  
+	 
+	  /*close database connections*/
 	  private void close() {
 		    try {
 		    	

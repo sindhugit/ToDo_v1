@@ -25,6 +25,7 @@ public class DeleteList {
 	  final private String user = "root"; 
 	  final private String passwd = "root";
 	  
+	  /** Deleting list name and its list items**/
 	  public void EditByDelete(String selectedListName,String selectedListItem)throws Exception{
 		  
 			try {
@@ -63,7 +64,7 @@ public class DeleteList {
 	        }
 		}
 		
-		
+	  /*Closing all connections*/
 		 private void close() {
 			    try {
 			    	
