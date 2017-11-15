@@ -46,7 +46,7 @@ public class LoginModel {
 		      connect = DriverManager
 		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 		      
-		      System.out.println("Connection Successful");
+		     
 		      statement = connect.createStatement();
 		      
 		    
@@ -57,12 +57,12 @@ public class LoginModel {
 	      
 	      while (resultSet.next()) {
 	            String usernameString = resultSet.getString("email");
-	            System.out.println("UserName:"+ usernameString);
+	            //System.out.println("UserName:"+ usernameString);
 	            if(usernameString.equals(userName)) {
-	            	System.out.println("User found");
+	            	//System.out.println("User found");
 	            	String passwordString = resultSet.getString("password");
-	            	System.out.println("Password:"+ passwordString);
-	            	System.out.println("Password:"+ password);
+	            	//System.out.println("Password:"+ passwordString);
+	            	//System.out.println("Password:"+ password);
 	            	if(passwordString.equals(password)) {
 	            		isValidLogin = 1;
 	            	}
@@ -76,9 +76,9 @@ public class LoginModel {
 	      
 	        if(isValidLogin == 0){
 	    	  JOptionPane.showMessageDialog(null,"User doesnt exist!!! Continue to registration");
-	    	  //RegistrationPage regPage= new RegistrationPage();	
+	    	  	
 	    	  RegistrationPage.main(null);
-	    	  System.out.println("Registration page called");
+	    	  
 	    	 }
 	         else  if(isValidLogin == 1) {
 			      JOptionPane.showMessageDialog(null, "Logged in successfully.");
@@ -87,7 +87,7 @@ public class LoginModel {
 		      }
 		         else if(isValidLogin == 2){
 		    	      JOptionPane.showMessageDialog(null, "Password is wrong. Please check and re-enter or Use forgot password to recover.");
-		    	      ResetPage.main(null);
+		    	     // ResetPage.main(null);
 		         }
 	     }
 	        catch(Exception e) {
@@ -112,7 +112,7 @@ public class LoginModel {
 	        }
 	      
          if (statement != null) {
-	        //statement.close();
+	        statement.close();
 	      }
 
 	      if (connect != null) {

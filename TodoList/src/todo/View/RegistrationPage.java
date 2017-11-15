@@ -215,7 +215,7 @@ public class RegistrationPage {
        /* checking for empty fields, if fields or not empty call registration method to register*/
 	   private void regButtonMethod(){
 		
-		System.out.println("Registration Button Method Called.");
+		
 					
 			if(usernameField.getText().toString().isEmpty()) {
 						
@@ -247,7 +247,12 @@ public class RegistrationPage {
 					OptionsCall objOptionsCall=new OptionsCall();	
 					//get the selected value of comboBox
 					String question=(String) comboBox.getSelectedItem();
-				objOptionsCall.callRegistration(usernameField.getText().toString(), String.valueOf(passwordField.getPassword()),profileField.getText().toString(),question,String.valueOf(answerfield.getPassword()));
+					try {
+				      objOptionsCall.callRegistration(usernameField.getText().toString(), String.valueOf(passwordField.getPassword()),profileField.getText().toString(),question,String.valueOf(answerfield.getPassword()));
+					}
+					catch (Exception e) {
+			             e.printStackTrace();
+				     }
 			}
 	}
 }

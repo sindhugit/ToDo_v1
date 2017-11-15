@@ -41,10 +41,10 @@ public class EditList {
 		      // Setup the connection with the DB
 		      connect = DriverManager
 		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
-		      System.out.println("EditByAdd called");
-		      System.out.println("Connection Successful");
+		      
 		      
 		      statement = connect.createStatement(); 
+		      
 		      preparedStatement = connect
 		                          .prepareStatement("insert into  todo_db.list_table values (?, ?, ?)");
 		      preparedStatement.setString(1, userlogname);
@@ -52,6 +52,7 @@ public class EditList {
               preparedStatement.setString(3, listItems);
               preparedStatement.executeUpdate();
               JOptionPane.showMessageDialog(null, "Data inserted sucessfully....");
+              
 	   }
 	    catch(Exception e) {
           throw e;
@@ -73,7 +74,7 @@ public class EditList {
 		        }
 		      
 	         if (statement != null) {
-		        //statement.close();
+		        statement.close();
 		      }
 
 		      if (connect != null) {

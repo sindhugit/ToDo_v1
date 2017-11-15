@@ -184,7 +184,7 @@ public class ShowPage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	      
 	      statement = connect.createStatement();
 	      
 	      LoginModel objLoginModel=new LoginModel();
@@ -200,7 +200,7 @@ public class ShowPage {
               while(resultSet.next()) {
     	      listNameString = resultSet.getString("listname");
     	      dlmobj1.addElement(listNameString);
-    	      System.out.println("dlmobj1    "+dlmobj1);
+    	      
     	      
            }
       
@@ -216,7 +216,7 @@ public class ShowPage {
              while(resultSet.next()) {
    	      listItemString = resultSet.getString("items");
    	      dlmobj2.addElement(listItemString);
-   	      System.out.println("dlmobj2    "+dlmobj2);
+   	     
    	      
           }
      
@@ -242,7 +242,7 @@ public class ShowPage {
 			        }
 			      
 		        if (statement != null) {
-			        //statement.close();
+			        statement.close();
 			      }
 
 			      if (connect != null) {

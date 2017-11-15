@@ -3,6 +3,8 @@ package todo.View;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -170,7 +172,7 @@ public class DeleteListPage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	     
 	      statement = connect.createStatement();
 	      
 	      resultSet = statement.executeQuery("select listname,items from todo_db.list_table");
@@ -192,14 +194,25 @@ public class DeleteListPage {
 		DefaultTableModel dtm=(DefaultTableModel) loadTable.getModel();
 		//get index of selected row
 		int selectedRow=loadTable.getSelectedRow();
+		
+		/*checking any row is selected or not*/
+		// if no row selected
+		if(selectedRow<0) {
+			JOptionPane.showMessageDialog(null, "First press *Load Data* then Please select some Row to delete");
+		}
+		//if row selected
+		if(selectedRow>=0) {
 		//get list name and list item of selected row
 		String selectedListName=(String) dtm.getValueAt(selectedRow,0);
 		String selectedListItem=(String) dtm.getValueAt(selectedRow, 1);
 		OptionsCall objOptionsCall=new OptionsCall();
 		//calling delete method to remove the data in data base table
 		objOptionsCall.callDelete(selectedListName, selectedListItem);
+		
 		//delete data in user interface view
-		dtm.removeRow(selectedRow);
+		 dtm.removeRow(selectedRow);
+		}
+		
 		
 	}
 	/* closing all connections*/
@@ -211,7 +224,7 @@ public class DeleteListPage {
 			        }
 			      
 		        if (statement != null) {
-			        //statement.close();
+			        statement.close();
 			      }
 
 			      if (connect != null) {

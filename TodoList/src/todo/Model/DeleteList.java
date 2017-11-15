@@ -26,7 +26,7 @@ public class DeleteList {
 	  final private String passwd = "root";
 	  
 	  /** Deleting list name and its list items**/
-	  public void EditByDelete(String selectedListName,String selectedListItem)throws Exception{
+	  public void EditByDelete(String userlogname,String selectedListName,String selectedListItem)throws Exception{
 		  
 			try {
 			      // This will load the MySQL driver, each DB has its own driver
@@ -41,12 +41,10 @@ public class DeleteList {
 			      // Setup the connection with the DB
 			      connect = DriverManager
 			          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
-			      System.out.println("Connection Successful");
 			      
-			      LoginModel objLoginModel=new LoginModel();
-			      userlogname= objLoginModel.getUsername();
 			      
 			      statement = connect.createStatement(); 
+			      
 			      preparedStatement = connect
 			                          .prepareStatement("delete from todo_db.list_table where username=? AND listname=? AND items=?");
 			      preparedStatement.setString(1, userlogname);
@@ -73,7 +71,7 @@ public class DeleteList {
 			        }
 			      
 		         if (statement != null) {
-			        //statement.close();
+			        statement.close();
 			      }
 
 			      if (connect != null) {

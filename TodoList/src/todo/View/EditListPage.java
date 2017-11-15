@@ -30,9 +30,6 @@ public class EditListPage {
 	private String userlogname;
 	
 	
-	/**
-	 * @wbp.nonvisual location=163,-31
-	 */
 	private final JTextArea textArea = new JTextArea();
 
 	/**
@@ -141,7 +138,7 @@ public class EditListPage {
 	/* checking filed values and call editing list method*/
 	private void EditListPageMethod() {
 		
-	System.out.println("EditListPage method called");
+	
 	
 	LoginModel objLoginModel=new LoginModel();
     userlogname= objLoginModel.getUsername();
@@ -158,9 +155,14 @@ public class EditListPage {
 				
 		}
 		else {
-			OptionsCall objOptions=new OptionsCall();
-			
-			objOptions.callAddList(listNameField.getText().toString(),listItemsArea.getText().toString());
-			}
+			  OptionsCall objOptions=new OptionsCall();
+			   try {
+			     objOptions.callAddList(listNameField.getText().toString(),listItemsArea.getText().toString());
+			   }
+			   catch (Exception e) {
+			         e.printStackTrace();
+						
+			       }
+			 }
 }
 }

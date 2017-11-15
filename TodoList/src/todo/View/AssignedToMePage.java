@@ -209,7 +209,7 @@ public class AssignedToMePage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	      
 	      statement = connect.createStatement();
 	      
 	      LoginModel objLoginModel=new LoginModel();
@@ -231,7 +231,7 @@ public class AssignedToMePage {
 	              while(resultSet.next()) {
 	    	      userNameString = resultSet.getString("fromuser");
 	    	      dlmobj1.addElement(userNameString);
-	    	      System.out.println("dlmobj1    "+dlmobj1);
+	    	      
 	    	      
 	              }
 	      
@@ -264,16 +264,22 @@ public class AssignedToMePage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	      
 	      statement = connect.createStatement();
 	      
 	      LoginModel objLoginModel=new LoginModel();
 	      userlogname= objLoginModel.getUsername();
 	      
-         preparedStatement = connect
+	      if(((String) userList.getSelectedValue())==null) {
+	    	  JOptionPane.showMessageDialog(null, "First press *Load Users* button, then select one user to see tasks assigned by that user!!");
+	      }
+	      
+	      if(((String) userList.getSelectedValue())!=null) {
+	    	 
+	        preparedStatement = connect
 	                  .prepareStatement("select * from todo_db.assign_task WHERE fromuser=?");
 	  	      preparedStatement.setString(1,(String) userList.getSelectedValue());
-	  	      System.out.println(userList.getSelectedValue());
+	  	     // System.out.println(userList.getSelectedValue());
 	  	      resultSet=preparedStatement.executeQuery();
 	  	      
 	  	      DefaultListModel dlmobj2=new DefaultListModel();
@@ -284,11 +290,11 @@ public class AssignedToMePage {
 	    	      itemNameString = resultSet.getString("taskdetails");
 	    	      dlmobj2.addElement(listNameString);
 	    	      dlmobj3.addElement(itemNameString);
-	    	      System.out.println("dlmobj2    "+dlmobj2);
-	    	      System.out.println("dlmobj3    "+dlmobj3);
+	    	      
 	           }
 	    	   listNames.setModel(dlmobj2);
 	    	   listItems.setModel(dlmobj3);
+	      }   
 	    	  
 	    }
 		  catch(Exception e) {
@@ -309,7 +315,7 @@ public class AssignedToMePage {
 			        }
 			      
 		        if (statement != null) {
-			        //statement.close();
+			        statement.close();
 			      }
 
 			      if (connect != null) {

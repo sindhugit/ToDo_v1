@@ -137,7 +137,7 @@ public class CreateListPage {
 	
 	private void CreateListPageMethod()
 	{
-		System.out.println("CreateListPage method called");
+		
 		if(listNameField.getText().toString().isEmpty()) {
 			
 			JOptionPane.showMessageDialog(null, "ListName field is empty. Please create List name");
@@ -150,9 +150,14 @@ public class CreateListPage {
 					
 			}
 			else {
-				OptionsCall objOptions=new OptionsCall();
-				
-				objOptions.callAddList(listNameField.getText().toString(),listItemsArea.getText().toString());
+				  OptionsCall objOptions=new OptionsCall();
+			     	try {
+				        objOptions.callAddList(listNameField.getText().toString(),listItemsArea.getText().toString());
+				    }
+				    catch (Exception e) {
+			            e.printStackTrace();
+						
+			       }
 				}
 	}
 }

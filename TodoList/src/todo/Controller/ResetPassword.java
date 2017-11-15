@@ -28,8 +28,8 @@ import javax.swing.JFrame;
 	  final private String user = "root"; 
 	  final private String passwd = "root";
 	
-	  /** Reseting password if existed user and get security question**/
- public String checkValidUser(String userName) throws Exception {
+	    /** Reseting password if existed user and get security question**/
+       public String checkValidUser(String userName) throws Exception {
 		  
 		  try {
 			  
@@ -46,9 +46,9 @@ import javax.swing.JFrame;
 		      connect = DriverManager
 		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 		      
-		      System.out.println("Connection Successful");
+		      
 		      statement = connect.createStatement();
-	      //connection();
+	      
 	      resultSet = statement.executeQuery("select * from todo_db.todo_user_details");
 	      
 	        int isChangePassword = 0;
@@ -67,7 +67,7 @@ import javax.swing.JFrame;
 		 	      while(resultSet.next()) {
 	        	 returnString=resultSet.getString("question");
 		 	      }
-	        	 System.out.println(returnString);
+	        	 
 	        }
 	      /*  else {
 	    	  	  JOptionPane.showMessageDialog(null, "UserName not available. Please use Registration page to register.");
@@ -99,7 +99,7 @@ import javax.swing.JFrame;
 		      connect = DriverManager
 		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 		      
-		      System.out.println("Connection Successful");
+		      
 		      statement = connect.createStatement();
 		      
 	      //checking entered security question answer is correct or not
@@ -126,7 +126,7 @@ import javax.swing.JFrame;
 		      LoginPage.main(null);
 	          }
 	          else {
-	        	  JOptionPane.showMessageDialog(null, "Security question Answer is wrong!!!");  
+	        	  JOptionPane.showMessageDialog(null, "Security question Answer is wrong!!! Unable to Reset the password");  
 	          }
 	          
 		   }

@@ -197,7 +197,7 @@ public class ShowListNamesPage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	     
 	      statement = connect.createStatement();
 	      
 	      LoginModel objLoginModel=new LoginModel();
@@ -213,7 +213,7 @@ public class ShowListNamesPage {
 	              while(resultSet.next()) {
 	    	      listNameString = resultSet.getString("listname");
 	    	      dlmobj1.addElement(listNameString);
-	    	      System.out.println("dlmobj1    "+dlmobj1);
+	    	     
 	    	      
 	           }
 	      
@@ -246,26 +246,32 @@ public class ShowListNamesPage {
 	      connect = DriverManager
 	          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 	      
-	      System.out.println("Connection Successful");
+	     
 	      statement = connect.createStatement();
 	      
 	      LoginModel objLoginModel=new LoginModel();
 	      userlogname= objLoginModel.getUsername();
+	      System.out.println((String) listname.getSelectedValue());
+	      if(((String) listname.getSelectedValue())==null) {
+	    	  JOptionPane.showMessageDialog(null, "First press *Show ListNames* button then Select some ListName to see its Items");
+	      }
 	      
-         preparedStatement = connect
+	      if(((String) listname.getSelectedValue())!=null) {
+          preparedStatement = connect
 	                  .prepareStatement("select * from todo_db.list_table WHERE username=? AND listname=?");
 	  	      preparedStatement.setString(1, userlogname);
 	  	      preparedStatement.setString(2, (String) listname.getSelectedValue());
-	  	      System.out.println(listname.getSelectedValue());
+	  	      //System.out.println(listname.getSelectedValue());
 	  	      resultSet=preparedStatement.executeQuery();
 	  	      DefaultListModel dlmobj2=new DefaultListModel();
 	  	      while(resultSet.next()) {
 	    	      itemNameString = resultSet.getString("items");
 	    	      dlmobj2.addElement(itemNameString);
-	    	      System.out.println("dlmobj2    "+dlmobj2);
+	    	      
 	    	      
 	           }
 	    	   itemlist.setModel(dlmobj2);
+	      }
 	    	  
 	    }
 		  catch(Exception e) {
@@ -287,7 +293,7 @@ public class ShowListNamesPage {
 	        }
 	      
         if (statement != null) {
-	        //statement.close();
+	        statement.close();
 	      }
 
 	      if (connect != null) {

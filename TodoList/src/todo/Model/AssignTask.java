@@ -28,7 +28,7 @@ public class AssignTask {
 	  final private String passwd = "root";
 	  
 	  /** creating new list**/
-	  public void assignTaskMethod(String toUser,String listName,String listItems) throws Exception{
+	  public void assignTaskMethod(String fromUser,String toUser,String listName,String listItems) throws Exception{
 		  flag=0;
 		  try {
 		      // This will load the MySQL driver, each DB has its own driver
@@ -44,27 +44,10 @@ public class AssignTask {
 		      connect = DriverManager
 		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
 		      
-		      System.out.println("Connection Successful");
+		      
 		      statement = connect.createStatement();
 		      
-		      LoginModel objLoginModel=new LoginModel();
-		      fromUser= objLoginModel.getUsername();
 		      
-		      resultSet = statement.executeQuery("select * from todo_db.todo_user_details");
-		      
-		      int isValidAssign = 0;
-		      
-		      while (resultSet.next()) {
-		            String toUserString = resultSet.getString("email");
-		            System.out.println("ToUser:"+ toUserString);
-		            if(toUserString.equals(toUser)) {
-		            	System.out.println("User found");
-		            	isValidAssign=1;
-		            }
-		       }
-		      
-		      
-		      if(isValidAssign==1) {
 		    	  
 		      preparedStatement = connect
 	                  .prepareStatement("insert into todo_db.assign_task values(?,?,?,?)");
@@ -75,20 +58,8 @@ public class AssignTask {
 		      preparedStatement.executeUpdate();
 		      JOptionPane.showMessageDialog(null, "Task Assigned sucessfully....");
 		      
-		      System.out.println("resultset "+resultSet);
 		      
-		      System.out.println("FromUser "+fromUser);
-		      System.out.println("ListName "+listName);
-		      System.out.println("list itemes "+listItems);
-		      System.out.println("ToUser "+toUser);
-		      }
-		      
-		      if(isValidAssign==0) {
-		    	  
-		    	  JOptionPane.showMessageDialog(null, "Assign task failed!! Selected user not existed in ToDo system");
-		      }
-		      
-		 }
+		  }
 		  catch(Exception e) {
 	            throw e;
 	       }//catch close 

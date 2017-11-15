@@ -141,7 +141,7 @@ public class AssignTaskPage {
 	
 	private void AssignTaskPageMethod()
 	{
-		System.out.println("CreateListPage method called");
+		
            if(toUserField.getText().toString().isEmpty()) {
 			
 			JOptionPane.showMessageDialog(null, "User name not entered!! Unable to assign task");
@@ -161,7 +161,13 @@ public class AssignTaskPage {
 			else {
 				OptionsCall objOptions=new OptionsCall();
 				
+				try {
 				objOptions.callAssignTask(toUserField.getText().toString(),listNameField.getText().toString(),listItemsArea.getText().toString());
+				}
+				 catch (Exception e) {
+			         e.printStackTrace();
+						
+			       }
 				}
 	}
 }
