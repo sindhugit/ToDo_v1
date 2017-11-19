@@ -35,7 +35,88 @@ public class OptionsCall {
 	  /** calling AddList method**/
 	public void callAddList(String listName,String listItems) throws Exception{
 		  int flag=0;
+		 
 		  try {
+		      // This will load the MySQL driver, each DB has its own driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      
+		      Properties properties = new Properties();
+		      properties.setProperty("user", user);
+		      properties.setProperty("password", passwd);
+		      properties.setProperty("useSSL", "false");
+		      properties.setProperty("autoReconnect", "true");
+		      
+		      // Setup the connection with the DB
+		      connect = DriverManager
+		          .getConnection("jdbc:mysql://localhost:3306/todo_db", properties);
+		      
+		      
+		      statement = connect.createStatement();
+		      
+		      LoginModel objLoginModel=new LoginModel();
+		      userlogname= objLoginModel.getUsername();
+		      
+		      preparedStatement = connect
+	                  .prepareStatement("select * from todo_db.list_table WHERE username=?");
+		      preparedStatement.setString(1, userlogname);
+		      resultSet=preparedStatement.executeQuery();
+		      
+		      
+		      while(resultSet.next())
+		      {
+		    	  listNameString = resultSet.getString("listname");
+					  if(listNameString.equalsIgnoreCase(listName)) {
+						    	flag=1;
+						         break;
+						     } 
+		      }
+		      
+		      /*if list name not existed*/
+		      if(flag==0) {
+		       AddList objAddList = new AddList();
+		   
+		       try {
+						
+			      objAddList.addListMethod(listName,listItems,userlogname);
+					
+		       } 
+		       catch (Exception e) {
+		         e.printStackTrace();
+					
+		       }
+		    }
+		    /*if list name already existed*/  
+		   if(flag==1) {
+        	 
+    	    int choice=JOptionPane.showConfirmDialog(null,"ListName Already existed, Do you want to continue with edit list option??",null, JOptionPane.YES_NO_OPTION);
+    	    if(choice == JOptionPane.YES_OPTION) {
+    		  
+    		 
+    		    callEditAdd(listNameString, listItems);
+    		 
+    	    }
+    	    else if(choice == JOptionPane.NO_OPTION) {
+    		  JOptionPane.showMessageDialog(null, "List not created!!");  
+    	    }
+         }
+    	  
+      
+      }
+       catch(Exception e) {
+          throw e;
+       }//catch close 
+      finally {
+	
+         close();
+      }
+	}
+	
+	
+	/** calling editing method**/
+	 public void callEditAdd(String listName,String listItems) throws Exception {
+		 int flag=0;
+		 
+		 try {
 		      // This will load the MySQL driver, each DB has its own driver
 		      Class.forName("com.mysql.jdbc.Driver");
 		      
@@ -68,45 +149,44 @@ public class OptionsCall {
 						         break;
 						     } 
 		      }
-		      /*if list name not existed*/
+		      /*when list name existed*/
+		      if(flag==1) {
+		       EditList objEditList= new EditList();
+		
+	        	 try {
+			 
+		            objEditList.EditByAdd(userlogname,listNameString,listItems);
+		          }
+		        catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		     }
+		      /* when list not existed to change*/
 		      if(flag==0) {
-		       AddList objAddList = new AddList();
-		   
-		       try {
-						
-			      objAddList.addListMethod(listName,listItems,userlogname);
-					
-		       } 
-		       catch (Exception e) {
-		         e.printStackTrace();
-					
-		       }
-		    }
-		    /*if list name already existed*/  
-		   if(flag==1) {
-        	 
-    	    int choice=JOptionPane.showConfirmDialog(null,"ListName Already existed, Do you want to continue with edit list option??",null, JOptionPane.YES_NO_OPTION);
-    	    if(choice == JOptionPane.YES_OPTION) {
-    		  
-    		 
-    		    callEditAdd(userlogname, listNameString, listItems);
-    		 
-    	    }
-    	    else if(choice == JOptionPane.NO_OPTION) {
-    		  JOptionPane.showMessageDialog(null, "List not created!!");  
-    	    }
-         }
-    	  
-      
-      }
-       catch(Exception e) {
-          throw e;
-       }//catch close 
-      finally {
+		    	  
+		    	  int choice=JOptionPane.showConfirmDialog(null,"ListName not existed, Do you want to continue with create list option??",null, JOptionPane.YES_NO_OPTION);
+		    	    if(choice == JOptionPane.YES_OPTION) {
+		    		  
+		    		 
+		    		    callAddList(listName, listItems);
+		    		 
+		    	    }
+		    	    else if(choice == JOptionPane.NO_OPTION) {
+		    		  JOptionPane.showMessageDialog(null, "No changes to list!!");  
+		    	    }
+		      }
+		    	  
+		      
+		 
+	      } catch(Exception e) {
+	          throw e;
+	           }//catch close 
+	          finally {
+		
+	            close();
+	         }
+	 }
 	
-         close();
-      }
-	}
 	
 	
 	/**calling assign task method after checking assigning user existed or not**/
@@ -237,19 +317,6 @@ public class OptionsCall {
 	}
 	
 	
-	/** calling editing method**/
-	 public void callEditAdd(String userlogname,String listNameString,String listItems) {
-		 
-		EditList objEditList= new EditList();
-		
-		 try {
-			 
-		  objEditList.EditByAdd(userlogname,listNameString,listItems);
-		 }
-		 catch (Exception e) {
-		  e.printStackTrace();
-		 }
-	 }
 	
 	 
 	 /** calling deletion method**/

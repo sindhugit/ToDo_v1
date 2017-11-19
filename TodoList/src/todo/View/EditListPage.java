@@ -157,7 +157,7 @@ public class EditListPage {
 		else {
 			  OptionsCall objOptions=new OptionsCall();
 			   try {
-			     objOptions.callAddList(listNameField.getText().toString(),listItemsArea.getText().toString());
+			     objOptions.callEditAdd(listNameField.getText().toString(),listItemsArea.getText().toString());
 			   }
 			   catch (Exception e) {
 			         e.printStackTrace();

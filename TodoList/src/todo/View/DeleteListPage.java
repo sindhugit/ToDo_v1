@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import net.proteanit.sql.DbUtils;
+import todo.Controller.LoginModel;
 import todo.Controller.OptionsCall;
 
 
@@ -175,8 +176,16 @@ public class DeleteListPage {
 	     
 	      statement = connect.createStatement();
 	      
-	      resultSet = statement.executeQuery("select listname,items from todo_db.list_table");
+	      LoginModel objLoginModel=new LoginModel();
+	      String userlogname= objLoginModel.getUsername();
+	      
+	      preparedStatement = connect
+                  .prepareStatement("select listname,items from todo_db.list_table where username=?");
+	      preparedStatement.setString(1, userlogname);
+	      resultSet = preparedStatement.executeQuery();
+	      
 	      loadTable.setModel(DbUtils.resultSetToTableModel(resultSet));
+	      
 		 }
 		  catch(Exception e) {
 	         throw e;

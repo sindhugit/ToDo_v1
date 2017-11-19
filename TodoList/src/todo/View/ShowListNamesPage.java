@@ -251,7 +251,8 @@ public class ShowListNamesPage {
 	      
 	      LoginModel objLoginModel=new LoginModel();
 	      userlogname= objLoginModel.getUsername();
-	      System.out.println((String) listname.getSelectedValue());
+	      //System.out.println((String) listname.getSelectedValue());
+	      
 	      if(((String) listname.getSelectedValue())==null) {
 	    	  JOptionPane.showMessageDialog(null, "First press *Show ListNames* button then Select some ListName to see its Items");
 	      }
