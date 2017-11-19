@@ -78,7 +78,7 @@ public class LoginPage {
 		lblWelcomeToTodo.setForeground(new Color(165, 42, 42));
 		lblWelcomeToTodo.setFont(new Font("Sitka Subheading", Font.BOLD, 20));
 		lblWelcomeToTodo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcomeToTodo.setBounds(231, 25, 276, 25);
+		lblWelcomeToTodo.setBounds(268, 27, 276, 25);
 		frame.getContentPane().add(lblWelcomeToTodo);
 		
 		usernameField= new JTextField();
